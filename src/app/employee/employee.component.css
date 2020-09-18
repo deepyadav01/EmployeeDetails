@@ -1,0 +1,31 @@
+.formContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 30px;
+    padding: 50px;
+
+}
+.pic{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+}
+.imageContainer{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 10px;
+}
+
+.submitReset{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+}
+.image{
+    width: 150px;
+}
+.mat-form-field{
+    width: 100%;
+}

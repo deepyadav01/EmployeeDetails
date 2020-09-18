@@ -1,0 +1,61 @@
+<button mat-raised-button (click) = "back()">Back</button>
+
+<form [formGroup]="createEmployeeForm" (ngSubmit)="createEmployee()">
+    <div class="formContainer">
+        <div>
+            <div>
+                <div style="width: 100%;">
+                <img  style="width: inherit;" *ngIf="imageUrl" [src]="imageUrl" class="image">
+            </div>
+            <div class="pic"> 
+                <app-camera (pictureTaken)="handleImage($event)" *ngIf ="!dataService.camera" ></app-camera>
+                <img src="../assets/icon/camera_alt-24px.svg" *ngIf ="dataService.camera" (click) = "clear()">
+                <input #Image *ngIf ="dataService.camera" type="file" (change)="handleFileInput($event.target.files)"/>
+            </div>
+            </div>
+            
+        </div>
+
+        <div>
+        <div>
+            <mat-form-field>
+                <mat-label>Employee Name</mat-label>
+                <input matInput class="form-control" [formControlName]="'name'" placeholder="Enter Employee Name">
+                <!-- <span class="warning" *ngIf="createEmployeeForm.controls['name'].errors?.required">
+        *Employee name is required </span> -->
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field style="width: 90%;">
+                <mat-label>Employee Address</mat-label>
+                <input matInput class="form-control" [formControlName]="'address'" placeholder="Enter Employee address">
+            </mat-form-field>
+            <img src="../assets/icon/gps_fixed-24px.svg"  style="cursor: pointer;" (click) = "currentLocation();">
+        </div>
+        <div>
+            <mat-form-field>
+
+                <mat-label>Employee Phone Number </mat-label>
+                <input matInput class="form-control" [formControlName]="'phone'" placeholder="Enter Employee phone">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Employee Email Id </mat-label>
+                <input matInput class="form-control" [formControlName]="'email'" placeholder="Enter Employee email">
+            </mat-form-field>
+        </div>
+        </div>
+        <div class="gps">
+            <div class="center">
+                <app-map></app-map>
+              </div>
+            <!-- <button mat-raised-button  class="btn btn-warning mr-1"><img src="../assets/icon/gps_fixed-24px.svg" style="padding-right: 5px;">Current location</button> -->
+        </div>
+
+</div>
+<div class="submitReset">
+        <button mat-raised-button  type="reset" (click) = "reset()" >Reset</button>
+        <button mat-raised-button  type="submit" [disabled]="!createEmployeeForm.valid" class="btn btn-primary">Insert Employee</button>
+    </div>
+</form>
